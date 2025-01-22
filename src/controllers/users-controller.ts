@@ -1,6 +1,5 @@
 import { prisma } from "@/database/prisma";
 import { AppError } from "@/utils/app-error";
-import { User } from "@prisma/client";
 import { hash } from "bcrypt";
 import { Request, Response } from "express";
 import { z } from "zod";
