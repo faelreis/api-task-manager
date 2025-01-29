@@ -67,21 +67,31 @@ Here are some of the available routes in the project:
 
 #### 1. **Users**
 
-- **POST /users/signup**: Registers a new user.
-- **POST /users/login**: Logs in the user and returns a JWT.
-- **GET /users/me**: Returns the authenticated user's information (requires JWT).
+- **GET /users**: Returns a list of all users (requires authentication).
+- **POST /users**: Registers a new user.
+- **PATCH /users/:id**: Updates a user's information (requires authentication and role validation: `admin` or `member`).
+- **DELETE /users/:id**: Deletes a user (requires authentication and role validation: `admin` or `member`).
+- **POST /users/:userId/teams/:teamId**: Adds a user to a team (requires authentication and `admin` role).
 
-#### 2. **Tasks**
+#### 2. **Sessions**
 
-- **POST /tasks**: Creates a new task (authentication required).
-- **GET /tasks**: Returns all tasks for the authenticated user.
-- **GET /tasks/:id**: Returns details of a specific task.
-- **PUT /tasks/:id**: Updates a specific task.
-- **DELETE /tasks/:id**: Deletes a specific task.
+- **POST /sessions**: Authenticates the user and returns a JWT.
 
-#### 3. **Authentication**
+#### 3. **Teams**
 
-- **POST /auth/refresh-token**: Renews the JWT authentication token.
+- **GET /teams**: Returns a list of all teams (requires authentication and `admin` role).
+- **POST /teams**: Creates a new team (requires authentication and `admin` role).
+- **GET /teams/:id**: Returns details of a specific team (requires authentication and role validation: `admin` or `member`).
+- **PATCH /teams/:id**: Updates a team's information (requires authentication and `admin` role).
+- **DELETE /teams/:id**: Deletes a team (requires authentication and `admin` role).
+
+#### 4. **Tasks**
+
+- **GET /tasks**: Returns a list of all tasks (requires authentication and role validation: `admin` or `member`).
+- **POST /tasks**: Creates a new task (requires authentication and role validation: `admin` or `member`).
+- **PATCH /tasks/:id**: Updates a task (requires authentication and role validation: `admin` or `member`).
+- **DELETE /tasks/:id**: Deletes a task (requires authentication and role validation: `admin` or `member`).
+- **GET /tasks/:id/history**: Returns the task history (requires authentication and role validation: `admin` or `member`).
 
 ## Dependencies
 
