@@ -1,572 +1,519 @@
 {
-	"info": {
-		"_postman_id": "5d39febc-aca7-4930-a570-fca6ea63709b",
-		"name": "Task manager",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "28830088"
-	},
-	"item": [
-		{
-			"name": "/users",
-			"item": [
-				{
-					"name": "Create",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"\",\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{BASE_URL}}/{{USERS_RESOURCE}}",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"{{USERS_RESOURCE}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Add to team",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{ACCESS_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{BASE_URL}}/{{USERS_RESOURCE}}/user-id/{{TEAMS_RESOURCE}}/team-id",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"{{USERS_RESOURCE}}",
-								"user-id",
-								"{{TEAMS_RESOURCE}}",
-								"team-id"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{ACCESS_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Reis\",\r\n    \"email\": \"reis@reis.com\",\r\n    \"password\": \"reis123\",\r\n    \"role\": \"admin\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{BASE_URL}}/{{USERS_RESOURCE}}/user-id",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"{{USERS_RESOURCE}}",
-								"user-id"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{ACCESS_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{BASE_URL}}/{{USERS_RESOURCE}}/user-id",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"{{USERS_RESOURCE}}",
-								"user-id"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Read",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{BASE_URL}}/{{USERS_RESOURCE}}",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"{{USERS_RESOURCE}}"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "/teams",
-			"item": [
-				{
-					"name": "Create",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{ACCESS_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"\",\r\n    \"description\": \"\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{BASE_URL}}/{{TEAMS_RESOURCE}}",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"{{TEAMS_RESOURCE}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update",
-					"request": {
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"\",\r\n    \"description\": \"\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{BASE_URL}}/{{TEAMS_RESOURCE}}/team-id",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"{{TEAMS_RESOURCE}}",
-								"team-id"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Show",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{ACCESS_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{BASE_URL}}/{{TEAMS_RESOURCE}}/team-id",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"{{TEAMS_RESOURCE}}",
-								"team-id"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Index",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{ACCESS_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{BASE_URL}}/{{TEAMS_RESOURCE}}",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"{{TEAMS_RESOURCE}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{BASE_URL}}/{{TEAMS_RESOURCE}}/team-id",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"{{TEAMS_RESOURCE}}",
-								"team-id"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "/sessions",
-			"item": [
-				{
-					"name": "Create",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{BASE_URL}}/{{SESSIONS_RESOURCE}}",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"{{SESSIONS_RESOURCE}}"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "/tasks",
-			"item": [
-				{
-					"name": "Create",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{ACCESS_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n  \"assignedTo\": \"\",\r\n  \"teamId\": \"\",   \r\n  \"title\": \"\",\r\n  \"description\": \"\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{BASE_URL}}/{{TASKS_RESOURCE}}",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"{{TASKS_RESOURCE}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Read",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{ACCESS_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{BASE_URL}}/{{TASKS_RESOURCE}}",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"{{TASKS_RESOURCE}}"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{ACCESS_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PATCH",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Implementar autenticação V5\",\r\n    \"description\": \"Desenvolver um agente de IA\",\r\n    \"status\": \"in_progress\",\r\n    \"assignedTo\": \"05ac6f7e-84f4-4617-97d9-f089682987e4\",\r\n    \"teamId\": \"3dc227d8-6bb3-483d-b2ee-82543a4ef52e\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{BASE_URL}}/{{TASKS_RESOURCE}}/task-id",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"{{TASKS_RESOURCE}}",
-								"task-id"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Delete",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{ACCESS_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{BASE_URL}}/{{TASKS_RESOURCE}}/task-id",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"{{TASKS_RESOURCE}}",
-								"task-id"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "/teams-member",
-			"item": [
-				{
-					"name": "Read",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{ACCESS_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{BASE_URL}}/{{TASKS_RESOURCE}}/task-id/history",
-							"host": [
-								"{{BASE_URL}}"
-							],
-							"path": [
-								"{{TASKS_RESOURCE}}",
-								"task-id",
-								"history"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		}
-	],
-	"event": [
-		{
-			"listen": "prerequest",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
-		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"packages": {},
-				"exec": [
-					""
-				]
-			}
-		}
-	],
-	"variable": [
-		{
-			"key": "ACCESS_TOKEN",
-			"value": "",
-			"type": "string"
-		},
-		{
-			"key": "BASE_URL",
-			"value": "http://localhost:8888",
-			"type": "string"
-		},
-		{
-			"key": "USERS_RESOURCE",
-			"value": "users",
-			"type": "string"
-		},
-		{
-			"key": "SESSIONS_RESOURCE",
-			"value": "sessions",
-			"type": "string"
-		},
-		{
-			"key": "TEAMS_RESOURCE",
-			"value": "teams",
-			"type": "string"
-		},
-		{
-			"key": "TEAM_MEMBER_RESOURCE",
-			"value": "team-members",
-			"type": "string"
-		},
-		{
-			"key": "TASKS_RESOURCE",
-			"value": "tasks",
-			"type": "string"
-		}
-	]
+  "info": {
+    "_postman_id": "5d39febc-aca7-4930-a570-fca6ea63709b",
+    "name": "Task manager",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "28830088"
+  },
+  "item": [
+    {
+      "name": "/users",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"\",\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/{{USERS_RESOURCE}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["{{USERS_RESOURCE}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Add to team",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ACCESS_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/{{USERS_RESOURCE}}/user-id/{{TEAMS_RESOURCE}}/team-id",
+              "host": ["{{BASE_URL}}"],
+              "path": [
+                "{{USERS_RESOURCE}}",
+                "user-id",
+                "{{TEAMS_RESOURCE}}",
+                "team-id"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ACCESS_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Reis\",\r\n    \"email\": \"reis@reis.com\",\r\n    \"password\": \"reis123\",\r\n    \"role\": \"admin\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/{{USERS_RESOURCE}}/user-id",
+              "host": ["{{BASE_URL}}"],
+              "path": ["{{USERS_RESOURCE}}", "user-id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ACCESS_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/{{USERS_RESOURCE}}/user-id",
+              "host": ["{{BASE_URL}}"],
+              "path": ["{{USERS_RESOURCE}}", "user-id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Read",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/{{USERS_RESOURCE}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["{{USERS_RESOURCE}}"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "/teams",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ACCESS_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"\",\r\n    \"description\": \"\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/{{TEAMS_RESOURCE}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["{{TEAMS_RESOURCE}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"\",\r\n    \"description\": \"\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/{{TEAMS_RESOURCE}}/team-id",
+              "host": ["{{BASE_URL}}"],
+              "path": ["{{TEAMS_RESOURCE}}", "team-id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Show",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ACCESS_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/{{TEAMS_RESOURCE}}/team-id",
+              "host": ["{{BASE_URL}}"],
+              "path": ["{{TEAMS_RESOURCE}}", "team-id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Index",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ACCESS_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/{{TEAMS_RESOURCE}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["{{TEAMS_RESOURCE}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/{{TEAMS_RESOURCE}}/team-id",
+              "host": ["{{BASE_URL}}"],
+              "path": ["{{TEAMS_RESOURCE}}", "team-id"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "/sessions",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"\",\r\n    \"password\": \"\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/{{SESSIONS_RESOURCE}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["{{SESSIONS_RESOURCE}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Refresh Token",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"refreshToken\": \"\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/{{SESSIONS_RESOURCE}}/refresh",
+              "host": ["{{BASE_URL}}"],
+              "path": ["{{SESSIONS_RESOURCE}}", "refresh"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "/tasks",
+      "item": [
+        {
+          "name": "Create",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ACCESS_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"assignedTo\": \"\",\r\n  \"teamId\": \"\",   \r\n  \"title\": \"\",\r\n  \"description\": \"\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/{{TASKS_RESOURCE}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["{{TASKS_RESOURCE}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Read",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ACCESS_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/{{TASKS_RESOURCE}}",
+              "host": ["{{BASE_URL}}"],
+              "path": ["{{TASKS_RESOURCE}}"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ACCESS_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"Implementar autenticação V5\",\r\n    \"description\": \"Desenvolver um agente de IA\",\r\n    \"status\": \"in_progress\",\r\n    \"assignedTo\": \"05ac6f7e-84f4-4617-97d9-f089682987e4\",\r\n    \"teamId\": \"3dc227d8-6bb3-483d-b2ee-82543a4ef52e\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/{{TASKS_RESOURCE}}/task-id",
+              "host": ["{{BASE_URL}}"],
+              "path": ["{{TASKS_RESOURCE}}", "task-id"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ACCESS_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/{{TASKS_RESOURCE}}/task-id",
+              "host": ["{{BASE_URL}}"],
+              "path": ["{{TASKS_RESOURCE}}", "task-id"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "/teams-member",
+      "item": [
+        {
+          "name": "Read",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ACCESS_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/{{TASKS_RESOURCE}}/task-id/history",
+              "host": ["{{BASE_URL}}"],
+              "path": ["{{TASKS_RESOURCE}}", "task-id", "history"]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "ACCESS_TOKEN",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "BASE_URL",
+      "value": "http://localhost:8888",
+      "type": "string"
+    },
+    {
+      "key": "USERS_RESOURCE",
+      "value": "users",
+      "type": "string"
+    },
+    {
+      "key": "SESSIONS_RESOURCE",
+      "value": "sessions",
+      "type": "string"
+    },
+    {
+      "key": "TEAMS_RESOURCE",
+      "value": "teams",
+      "type": "string"
+    },
+    {
+      "key": "TEAM_MEMBER_RESOURCE",
+      "value": "team-members",
+      "type": "string"
+    },
+    {
+      "key": "TASKS_RESOURCE",
+      "value": "tasks",
+      "type": "string"
+    }
+  ]
 }

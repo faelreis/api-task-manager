@@ -21,10 +21,11 @@ model User {
 
   teams TeamMembers[]
 
-  createdAt   DateTime      @default(now()) @map("created_at")
-  updatedAt   DateTime?     @updatedAt @map("updated_at")
-  Tasks       Tasks[]
-  TaskHistory TaskHistory[]
+  createdAt    DateTime       @default(now()) @map("created_at")
+  updatedAt    DateTime?      @updatedAt @map("updated_at")
+  Tasks        Tasks[]
+  TaskHistory  TaskHistory[]
+  RefreshToken RefreshToken[]
 }
 
 model Team {
@@ -95,4 +96,15 @@ model TaskHistory {
   changedBy User  @relation(fields: [changed_by], references: [id])
 
   @@map("task_history")
+}
+
+model RefreshToken {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  userId    String   @map("user_id")
+  user      User     @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("refresh_token")
 }

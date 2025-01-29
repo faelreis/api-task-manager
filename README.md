@@ -76,6 +76,7 @@ Here are some of the available routes in the project:
 #### 2. **Sessions**
 
 - **POST /sessions**: Authenticates the user and returns a JWT.
+- **POST /sessions/refresh**: Authenticates the user with a refresh token and returns a new JWT.
 
 #### 3. **Teams**
 
