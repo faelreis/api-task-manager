@@ -1,5 +1,6 @@
-import { app } from "./app";
+import { app } from "@/app";
+import { env } from "./env";
 
-const PORT = process.env.SERVER_PORT || 8888;
+const PORT = env.PORT;
 
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));

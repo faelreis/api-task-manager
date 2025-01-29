@@ -17,22 +17,26 @@ const ensureAuthenticated = (
     const authHeader = request.headers.authorization;
 
     if (!authHeader) {
-      throw new AppError("Invalid token", 401);
+      throw new AppError("Authorization header missing", 401);
     }
 
     const [, token] = authHeader.split(" ");
 
-    const { role, sub: user_id } = verify(
-      token,
-      authConfig.jwt.secret
-    ) as TokenPayload;
+    try {
+      const { role, sub: user_id } = verify(
+        token,
+        authConfig.jwt.secret
+      ) as TokenPayload;
 
-    request.user = {
-      id: user_id,
-      role,
-    };
+      request.user = {
+        id: user_id,
+        role,
+      };
 
-    return next();
+      return next();
+    } catch (error) {
+      throw new AppError("Token expired or invalid", 401);
+    }
   } catch (error) {
     throw new AppError("Invalid token", 401);
   }

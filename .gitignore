@@ -1,3 +1,33 @@
-node_modules
-# Keep environment variables out of version control
+# Node
+node_modules/
+
+# Logs
+logs/
+*.log
+*.log.*
+
+# Environment variables
 .env
+.env.*
+!.env.example
+
+# Build output
+dist/
+build/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Debug
+.vscode/
+.idea/
+*.swp
+
+# Cache
+.cache/
+.cache-loader/
+.nyc_output/
+
+# Tasks
+todo.md

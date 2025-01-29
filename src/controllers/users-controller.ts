@@ -5,15 +5,37 @@ import { Request, Response } from "express";
 import { z } from "zod";
 
 class UsersController {
+  async index(req: Request, res: Response): Promise<any> {
+    const users = await prisma.user.findMany({
+      omit: {
+        password: true,
+      },
+      include: {
+        teams: {
+          include: {
+            team: true,
+          },
+        },
+      },
+    });
+
+    return res.json(users);
+  }
+
   async create(req: Request, res: Response): Promise<any> {
     const bodySchema = z.object({
       name: z.string().trim().min(2),
       email: z.string().email(),
       password: z.string().trim().min(6).max(32),
-      role: z.enum(["admin", "member"]),
+      role: z.enum(["admin", "member"]).optional(),
     });
 
-    const { name, email, password, role } = bodySchema.parse(req.body);
+    const {
+      name,
+      email,
+      password,
+      role = "member",
+    } = bodySchema.parse(req.body);
 
     const userWithSameEmail = await prisma.user.findFirst({
       where: {
@@ -22,7 +44,7 @@ class UsersController {
     });
 
     if (userWithSameEmail) {
-      throw new AppError("User with same email already exists");
+      throw new AppError("User with same email already exists", 400);
     }
 
     const hashedPassword = await hash(password, 8);
@@ -94,25 +116,55 @@ class UsersController {
 
     const { id } = paramsSchema.parse(req.params);
 
-    const user = await prisma.user.findUnique({
+    const user = await prisma.tasks.findUnique({
       where: {
         id,
       },
     });
 
     if (!user) {
-      return res.status(404).json({
-        error: "User not found",
-      });
+      throw new AppError("User not found");
     }
 
-    await prisma.user.delete({
+    await prisma.tasks.delete({
       where: {
         id,
       },
     });
 
-    return res.status(204).send();
+    return res.json({
+      message: "Task deleted successfully.",
+    });
+  }
+
+  async addToTeam(req: Request, res: Response): Promise<any> {
+    const paramsSchema = z.object({
+      userId: z.string().uuid(),
+      teamId: z.string().uuid(),
+    });
+
+    const { userId, teamId } = paramsSchema.parse(req.params);
+
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
+    });
+
+    const team = await prisma.team.findUnique({
+      where: { id: teamId },
+    });
+
+    if (!user || !team) {
+      throw new AppError("User or Team not found", 404);
+    }
+
+    const teamMember = await prisma.teamMembers.create({
+      data: {
+        userId,
+        teamId,
+      },
+    });
+
+    return res.status(201).json(teamMember);
   }
 }
 

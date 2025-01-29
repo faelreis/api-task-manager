@@ -1,22 +1,40 @@
 import { prisma } from "@/database/prisma";
 import { AppError } from "@/utils/app-error";
-import { hash } from "bcrypt";
 import { Request, Response } from "express";
 import { z } from "zod";
 
 class TeamsController {
+  async index(req: Request, res: Response): Promise<any> {
+    const teams = await prisma.team.findMany({
+      include: {
+        teamMembers: {
+          include: {
+            user: {
+              omit: {
+                password: true,
+              },
+            },
+            team: true,
+          },
+        },
+      },
+    });
+
+    return res.json(teams);
+  }
+
   async create(req: Request, res: Response): Promise<any> {
     const bodySchema = z.object({
       name: z.string().trim().min(1),
       description: z.string().optional(),
     });
 
-    const { name, description } = bodySchema.parse(req.body);
+    const { name, description = "" } = bodySchema.parse(req.body);
 
     const team = await prisma.team.create({
       data: {
         name,
-        description: description ?? "",
+        description,
       },
     });
 
@@ -36,11 +54,9 @@ class TeamsController {
       },
     });
 
-    await prisma.team.findFirst({
-      where: {
-        id,
-      },
-    });
+    if (!team) {
+      throw new AppError("Team not found");
+    }
 
     return res.json(team);
   }
@@ -104,7 +120,9 @@ class TeamsController {
       },
     });
 
-    return res.status(204).send();
+    return res.status(204).send({
+      message: "Task deleted",
+    });
   }
 }
 
